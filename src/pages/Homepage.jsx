@@ -1,10 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faWrench,
+	faCog,
+	faCar,
+	faBolt,
+	faOilCan,
+	faSnowflake,
+	faSearch,
+	faTachometerAlt,
+	faPhone,
+	faEnvelope,
+	faMapMarkerAlt,
+	faClock,
+	faBars,
+	faTimes,
+	faArrowRight,
+	faCheckCircle,
+	faUsers,
+	faTools,
+	faShieldAlt,
+	faStar,
+	faQuoteLeft,
+	faPlay,
+	faAward,
+	faCalendarAlt,
+	faHeadset,
+} from "@fortawesome/free-solid-svg-icons";
 import "./Homepage.css";
 
 const Homepage = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [currentTestimonial, setCurrentTestimonial] = useState(0);
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [activeTab, setActiveTab] = useState("dijagnostika");
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -15,128 +43,76 @@ const Homepage = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	useEffect(() => {
-		const testimonialTimer = setInterval(() => {
-			setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-		}, 5000);
-
-		return () => clearInterval(testimonialTimer);
-	}, []);
-
-	const services = [
-		{
-			icon: "🔧",
-			title: "Mehanički Popravci",
+	const services = {
+		dijagnostika: {
+			icon: faSearch,
+			title: "Bosch Dijagnostika",
 			description:
-				"Kompletni mehanički radovi na svim tipovima vozila. Dijagnostika, popravke motora, transmisije i svih mehaničkih sistema.",
-			price: "Od 50 KM",
+				"Najnaprednija kompjuterska dijagnostika sa originalnim Bosch uređajima",
+			features: [
+				"ESI[tronic] dijagnostika",
+				"Čitanje svih sistema",
+				"Live data monitoring",
+				"Programiranje ECU",
+			],
+			image:
+				"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&h=400&fit=crop",
 		},
-		{
-			icon: "⚙️",
+		motor: {
+			icon: faCog,
 			title: "Servis Motora",
 			description:
-				"Profesionalni servis motora, zamena ulja, filtera, svećica. Redovno održavanje po preporuci proizvođača.",
-			price: "Od 80 KM",
+				"Kompletni servis motora sa Bosch delovima i originalnim uljem",
+			features: [
+				"Bosch svećice",
+				"Originalni filteri",
+				"Bosch ulje",
+				"Timing sistem",
+			],
+			image:
+				"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500&h=400&fit=crop",
 		},
-		{
-			icon: "🚗",
-			title: "Kočnice i Suspenzija",
-			description:
-				"Popravka i zamena kočionog sistema, amortizera, opruga. Garancija na sve radove i delove.",
-			price: "Od 120 KM",
+		kocnice: {
+			icon: faShieldAlt,
+			title: "Kočni Sistem",
+			description: "Bosch kočne komponente za maksimalnu bezbednost",
+			features: [
+				"Bosch diskovi",
+				"Originalne pločice",
+				"ABS dijagnostika",
+				"ESP servis",
+			],
+			image:
+				"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop",
 		},
-		{
-			icon: "🔋",
-			title: "Električni Sistem",
-			description:
-				"Dijagnostika i popravka električnih sistema, alternatora, akumulatora, žažbene instalacije.",
-			price: "Od 60 KM",
+		elektrika: {
+			icon: faBolt,
+			title: "Bosch Elektrika",
+			description: "Električni sistemi sa Bosch kvalitetom i garancijom",
+			features: ["Bosch akumulatori", "Alternatori", "Starteri", "Senzori"],
+			image:
+				"https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=500&h=400&fit=crop",
 		},
-		{
-			icon: "🛞",
-			title: "Gume i Felne",
-			description:
-				"Balansiranje, menjanje guma, popravka felni. Veliki izbor letnih i zimskih guma svih dimenzija.",
-			price: "Od 30 KM",
-		},
-		{
-			icon: "❄️",
-			title: "Klima Uređaj",
-			description:
-				"Servis klima uređaja, dopunjavanje freon gasa, popravka kompresorovapirena sistema.",
-			price: "Od 100 KM",
-		},
-		{
-			icon: "🔍",
-			title: "Dijagnostika",
-			description:
-				"Kompjuterska dijagnostika vozila, čitanje grešaka, resetovanje servisa. Najmoderniji uređaji.",
-			price: "Od 40 KM",
-		},
-		{
-			icon: "🎨",
-			title: "Lakiranje i Farba",
-			description:
-				"Profesionalno lakiranje, uklanjanje ogrebotina, poliranje. Vraćamo originalnu boju vozila.",
-			price: "Od 200 KM",
-		},
-	];
+	};
 
 	const testimonials = [
 		{
-			name: "Marko Petrović",
-			text: "Najbolji servis u gradu! Uvek pošteni sa cenama i rade kvalitetno. Preporučujem svima.",
+			name: "Marko Stefanović",
+			text: "Najbolji Bosch servis u gradu. Profesionalno, brzo i fer cene. Preporučujem!",
 			rating: 5,
+			service: "Dijagnostika motora",
 		},
 		{
-			name: "Stefan Nikolić",
-			text: "Brza usluga, profesionalni pristup. Moj auto radi kao nov nakon servisa kod njih.",
+			name: "Ana Milić",
+			text: "Konačno servis koji koristi originalne Bosch delove. Kvalitet se oseti!",
 			rating: 5,
+			service: "Servis kočnica",
 		},
 		{
-			name: "Milica Jovanović",
-			text: "Konačno serviser koji poštuje rokove! Završili su posao pre vremena i auto radi savršeno.",
+			name: "Stefan Jovanović",
+			text: "Brzina usluge i stručnost majstora su na visokom nivou. Vrlo zadovoljan.",
 			rating: 5,
-		},
-		{
-			name: "Aleksandar Stojanović",
-			text: "Fer cene, dobri majstori. Već 3 godine servisiram ovde i nikad nisam imao problem.",
-			rating: 5,
-		},
-	];
-
-	const teamMembers = [
-		{
-			name: "Miloš Radić",
-			position: "Vlasnik i Glavni Mehaničar",
-			experience: "15 godina iskustva",
-			specialty: "Dijagnostika i popravke motora",
-			image:
-				"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-		},
-		{
-			name: "Dragan Milić",
-			position: "Mehaničar Specijalis",
-			experience: "12 godina iskustva",
-			specialty: "Kočnice i suspenzija",
-			image:
-				"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-		},
-		{
-			name: "Nikola Pavlović",
-			position: "Elektromehaničar",
-			experience: "8 godina iskustva",
-			specialty: "Električni sistemi i klima",
-			image:
-				"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
-		},
-		{
-			name: "Bojan Marković",
-			position: "Lakirer",
-			experience: "10 godina iskustva",
-			specialty: "Lakiranje i poliranje",
-			image:
-				"https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=300&h=300&fit=crop&crop=face",
+			service: "Elektrika vozila",
 		},
 	];
 
@@ -154,10 +130,9 @@ const Homepage = () => {
 			<header className={`header ${isScrolled ? "scrolled" : ""}`}>
 				<div className="container">
 					<div className="logo">
-						<div className="logo-icon">🔧</div>
-						<div className="logo-text">
-							<span className="logo-main">AutoServis</span>
-							<span className="logo-sub">Republika</span>
+						<div className="bosch-logo">
+							<span className="bosch-text">BOSCH</span>
+							<span className="car-service">Car Service</span>
 						</div>
 					</div>
 
@@ -171,8 +146,11 @@ const Homepage = () => {
 						<a href="#about" onClick={() => scrollToSection("about")}>
 							O Nama
 						</a>
-						<a href="#team" onClick={() => scrollToSection("team")}>
-							Tim
+						<a
+							href="#testimonials"
+							onClick={() => scrollToSection("testimonials")}
+						>
+							Utisci
 						</a>
 						<a href="#contact" onClick={() => scrollToSection("contact")}>
 							Kontakt
@@ -180,17 +158,15 @@ const Homepage = () => {
 					</nav>
 
 					<div className="header-actions">
-						<div className="phone-header">
-							<span className="phone-icon">📞</span>
-							<span className="phone-number">051/234-567</span>
+						<div className="emergency-btn">
+							<FontAwesomeIcon icon={faPhone} />
+							<span>Hitno: 065/123-456</span>
 						</div>
 						<button
 							className="menu-toggle"
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
 						>
-							<span></span>
-							<span></span>
-							<span></span>
+							<FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
 						</button>
 					</div>
 				</div>
@@ -202,7 +178,7 @@ const Homepage = () => {
 					<div className="hero-overlay"></div>
 					<img
 						src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1920&h=1080&fit=crop"
-						alt="Auto servis"
+						alt="Bosch Car Service"
 						className="hero-image"
 					/>
 				</div>
@@ -210,34 +186,34 @@ const Homepage = () => {
 				<div className="container">
 					<div className="hero-content">
 						<div className="hero-badge">
-							<span className="badge-icon">⭐</span>
-							<span>Najbolji u Republici Srpskoj</span>
+							<FontAwesomeIcon icon={faAward} className="badge-icon" />
+							<span>Ovlašćeni Bosch Partner</span>
 						</div>
 
 						<h1 className="hero-title">
-							Vaš <span className="highlight-red">Pouzdan</span> Partner
+							<span className="highlight-red">Bosch</span> Kvalitet
 							<br />
-							Za <span className="highlight-blue">Sve</span> Auto Potrebe
+							Za Vaš <span className="highlight-blue">Automobil</span>
 						</h1>
 
 						<p className="hero-description">
-							Sa preko 15 godina iskustva u servisiranju vozila, pružamo
-							vrhunske usluge mehaničkih popravki, održavanja i dijagnostike.
-							Vaš auto je u sigurnim rukama naših stručnih mehaničara.
+							Ovlašćeni Bosch Car Service centar u Banjoj Luci. Originalni
+							delovi, najnovija tehnologija i garantovani kvalitet za sve tipove
+							vozila.
 						</p>
 
-						<div className="hero-stats">
-							<div className="stat">
-								<div className="stat-number">1500+</div>
-								<div className="stat-label">Zadovoljnih Klijenata</div>
+						<div className="hero-features">
+							<div className="hero-feature">
+								<FontAwesomeIcon icon={faShieldAlt} />
+								<span>2 Godine Garancije</span>
 							</div>
-							<div className="stat">
-								<div className="stat-number">15</div>
-								<div className="stat-label">Godina Iskustva</div>
+							<div className="hero-feature">
+								<FontAwesomeIcon icon={faTools} />
+								<span>Originalni Bosch Delovi</span>
 							</div>
-							<div className="stat">
-								<div className="stat-number">24/7</div>
-								<div className="stat-label">Hitne Intervencije</div>
+							<div className="hero-feature">
+								<FontAwesomeIcon icon={faCalendarAlt} />
+								<span>Zakazivanje Online</span>
 							</div>
 						</div>
 
@@ -246,222 +222,205 @@ const Homepage = () => {
 								className="btn-primary"
 								onClick={() => scrollToSection("services")}
 							>
+								<FontAwesomeIcon icon={faWrench} />
 								Naše Usluge
 							</button>
 							<button
-								className="btn-secondary"
+								className="btn-outline"
 								onClick={() => scrollToSection("contact")}
 							>
-								<span className="btn-icon">📞</span>
-								Pozovi Sada
+								<FontAwesomeIcon icon={faCalendarAlt} />
+								Zakažite Termin
 							</button>
 						</div>
 					</div>
-				</div>
 
-				<div className="scroll-indicator">
-					<div className="scroll-arrow"></div>
+					<div className="hero-stats">
+						<div className="stat-card">
+							<div className="stat-number">15+</div>
+							<div className="stat-label">Godina Iskustva</div>
+						</div>
+						<div className="stat-card">
+							<div className="stat-number">5000+</div>
+							<div className="stat-label">Servisirani Automobili</div>
+						</div>
+						<div className="stat-card">
+							<div className="stat-number">24/7</div>
+							<div className="stat-label">Pomoć na Putu</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			{/* Services Section */}
 			<section id="services" className="services">
+				<div className="section-divider top"></div>
 				<div className="container">
 					<div className="section-header">
-						<div className="section-badge">Naše Usluge</div>
-						<h2 className="section-title">Kompletne Auto Usluge</h2>
+						<div className="section-badge">Bosch Usluge</div>
+						<h2 className="section-title">Profesionalne Auto Usluge</h2>
 						<p className="section-description">
-							Nudimo širok spektar profesionalnih usluga za sve tipove vozila.
-							Koristi moderne uređaje i originaline delove.
+							Koristimo isključivo originalne Bosch delove i najnoviju
+							dijagnostičku opremu
 						</p>
 					</div>
 
-					<div className="services-grid">
-						{services.map((service, index) => (
-							<div key={index} className="service-card">
-								<div className="service-icon">{service.icon}</div>
-								<h3 className="service-title">{service.title}</h3>
-								<p className="service-description">{service.description}</p>
-								<div className="service-price">{service.price}</div>
-								<button className="service-btn">Saznaj Više</button>
+					<div className="services-tabs">
+						<div className="tabs-navigation">
+							{Object.entries(services).map(([key, service]) => (
+								<button
+									key={key}
+									className={`tab-btn ${activeTab === key ? "active" : ""}`}
+									onClick={() => setActiveTab(key)}
+								>
+									<FontAwesomeIcon icon={service.icon} />
+									<span>{service.title}</span>
+								</button>
+							))}
+						</div>
+
+						<div className="tab-content">
+							<div className="service-showcase">
+								<div className="service-image">
+									<img
+										src={services[activeTab].image}
+										alt={services[activeTab].title}
+									/>
+									<div className="image-overlay">
+										<div className="play-button">
+											<FontAwesomeIcon icon={faPlay} />
+										</div>
+									</div>
+								</div>
+
+								<div className="service-details">
+									<div className="service-icon-large">
+										<FontAwesomeIcon icon={services[activeTab].icon} />
+									</div>
+									<h3>{services[activeTab].title}</h3>
+									<p>{services[activeTab].description}</p>
+
+									<ul className="service-features">
+										{services[activeTab].features.map((feature, index) => (
+											<li key={index}>
+												<FontAwesomeIcon icon={faCheckCircle} />
+												<span>{feature}</span>
+											</li>
+										))}
+									</ul>
+
+									<div className="service-actions">
+										<button className="btn-service">
+											Saznaj Više
+											<FontAwesomeIcon icon={faArrowRight} />
+										</button>
+										<button className="btn-quote">
+											<FontAwesomeIcon icon={faCalendarAlt} />
+											Zakažite
+										</button>
+									</div>
+								</div>
 							</div>
-						))}
+						</div>
 					</div>
 				</div>
+				<div className="section-divider bottom"></div>
 			</section>
 
 			{/* About Section */}
 			<section id="about" className="about">
 				<div className="container">
-					<div className="about-content">
-						<div className="about-text">
+					<div className="about-grid">
+						<div className="about-content">
 							<div className="section-badge">O Nama</div>
-							<h2 className="section-title">AutoServis Republika</h2>
-							<p className="about-description">
-								Osnovan 2008. godine u srcu Banje Luke, naš servis je odrastao
-								uz naše vernike mišterije i postao pouzdan partner za održavanje
-								i popravke vozila. Ponosno služimo našu zajednicu već više od
-								decenije.
+							<h2 className="section-title">Bosch Car Service Banja Luka</h2>
+							<p className="about-text">
+								Kao ovlašćeni Bosch partner, pružamo vrhunske usluge
+								servisiranja vozila koristeći isključivo originalne Bosch delove
+								i najmoderniju opremu. Naš tim sertifikovanih tehničara
+								garantuje profesionalnost i kvalitet.
 							</p>
 
-							<div className="about-features">
-								<div className="feature">
-									<div className="feature-icon">🏆</div>
-									<div className="feature-text">
-										<h4>Sertifikovani Majstori</h4>
-										<p>Svi naši mehaničari imaju oficijalne sertifikate</p>
+							<div className="certifications">
+								<div className="cert-item">
+									<div className="cert-icon">
+										<FontAwesomeIcon icon={faAward} />
+									</div>
+									<div className="cert-info">
+										<h4>Bosch Sertifikat</h4>
+										<p>Ovlašćeni servisni partner</p>
 									</div>
 								</div>
-
-								<div className="feature">
-									<div className="feature-icon">⚡</div>
-									<div className="feature-text">
-										<h4>Brza Usluga</h4>
-										<p>Većinu radova završavamo u roku od 24 časa</p>
+								<div className="cert-item">
+									<div className="cert-icon">
+										<FontAwesomeIcon icon={faShieldAlt} />
+									</div>
+									<div className="cert-info">
+										<h4>ISO Kvalitet</h4>
+										<p>Sertifikovani procesi</p>
 									</div>
 								</div>
-
-								<div className="feature">
-									<div className="feature-icon">🛡️</div>
-									<div className="feature-text">
-										<h4>Garancija na Radove</h4>
-										<p>Pružamo garanciju na sve izvedene radove</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="about-values">
-								<h3>Naše Vrednosti</h3>
-								<ul>
-									<li>Poštovanje tradicije i moderne tehnologije</li>
-									<li>Fer cene i transparentnost u radu</li>
-									<li>Predanost našoj lokalnoj zajednici</li>
-									<li>Kontinuiano usavršavanje i edukacija</li>
-								</ul>
 							</div>
 						</div>
 
 						<div className="about-visual">
-							<div className="about-image">
-								<img
-									src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=800&fit=crop"
-									alt="Naš servis"
-								/>
-								<div className="image-overlay">
-									<div className="overlay-content">
-										<span className="overlay-title">Moderni Servis</span>
-										<span className="overlay-subtitle">
-											Tradicionalne Vrednosti
-										</span>
-									</div>
+							<div className="bosch-showcase">
+								<div className="showcase-header">
+									<h3>Bosch Tehnologija</h3>
+									<p>Najnaprednija oprema u regionu</p>
 								</div>
-							</div>
-
-							<div className="about-stats">
-								<div className="about-stat">
-									<div className="stat-icon">👥</div>
-									<div className="stat-info">
-										<div className="stat-number">1500+</div>
-										<div className="stat-label">Mušterija</div>
+								<div className="tech-items">
+									<div className="tech-item">
+										<FontAwesomeIcon icon={faSearch} />
+										<span>ESI[tronic] Dijagnostika</span>
 									</div>
-								</div>
-
-								<div className="about-stat">
-									<div className="stat-icon">🔧</div>
-									<div className="stat-info">
-										<div className="stat-number">5000+</div>
-										<div className="stat-label">Popravki</div>
+									<div className="tech-item">
+										<FontAwesomeIcon icon={faTachometerAlt} />
+										<span>FSA Geometrija</span>
+									</div>
+									<div className="tech-item">
+										<FontAwesomeIcon icon={faCog} />
+										<span>KTS Testiranje</span>
+									</div>
+									<div className="tech-item">
+										<FontAwesomeIcon icon={faOilCan} />
+										<span>BEA Klimatizacija</span>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* Team Section */}
-			<section id="team" className="team">
-				<div className="container">
-					<div className="section-header">
-						<div className="section-badge">Naš Tim</div>
-						<h2 className="section-title">Stručni Mehaničari</h2>
-						<p className="section-description">
-							Upoznajte naš tim iskusnih stručnjaka koji brinu o vašem vozilu sa
-							pažnjom i profesionalizmom.
-						</p>
-					</div>
-
-					<div className="team-grid">
-						{teamMembers.map((member, index) => (
-							<div key={index} className="team-card">
-								<div className="team-image">
-									<img src={member.image} alt={member.name} />
-									<div className="team-overlay">
-										<div className="social-links">
-											<a href="#" className="social-link">
-												📧
-											</a>
-											<a href="#" className="social-link">
-												📞
-											</a>
-										</div>
-									</div>
-								</div>
-
-								<div className="team-info">
-									<h3 className="team-name">{member.name}</h3>
-									<p className="team-position">{member.position}</p>
-									<p className="team-experience">{member.experience}</p>
-									<p className="team-specialty">{member.specialty}</p>
-								</div>
-							</div>
-						))}
 					</div>
 				</div>
 			</section>
 
 			{/* Testimonials Section */}
-			<section className="testimonials">
+			<section id="testimonials" className="testimonials">
 				<div className="container">
 					<div className="section-header">
-						<div className="section-badge">Mišljenja Klijenata</div>
+						<div className="section-badge">Utisci Klijenata</div>
 						<h2 className="section-title">Šta Kažu Naši Klijenti</h2>
 					</div>
 
-					<div className="testimonial-slider">
-						<div className="testimonial-card active">
-							<div className="testimonial-content">
-								<div className="stars">
-									{[...Array(testimonials[currentTestimonial].rating)].map(
-										(_, i) => (
-											<span key={i} className="star">
-												⭐
-											</span>
-										)
-									)}
+					<div className="testimonials-grid">
+						{testimonials.map((testimonial, index) => (
+							<div key={index} className="testimonial-card">
+								<div className="testimonial-header">
+									<FontAwesomeIcon icon={faQuoteLeft} className="quote-icon" />
+									<div className="stars">
+										{[...Array(testimonial.rating)].map((_, i) => (
+											<FontAwesomeIcon key={i} icon={faStar} />
+										))}
+									</div>
 								</div>
-								<p className="testimonial-text">
-									"{testimonials[currentTestimonial].text}"
-								</p>
-								<div className="testimonial-author">
-									<span className="author-name">
-										{testimonials[currentTestimonial].name}
-									</span>
+								<p className="testimonial-text">{testimonial.text}</p>
+								<div className="testimonial-footer">
+									<div className="client-info">
+										<h4>{testimonial.name}</h4>
+										<span>{testimonial.service}</span>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<div className="testimonial-indicators">
-							{testimonials.map((_, index) => (
-								<button
-									key={index}
-									className={`indicator ${
-										index === currentTestimonial ? "active" : ""
-									}`}
-									onClick={() => setCurrentTestimonial(index)}
-								/>
-							))}
-						</div>
+						))}
 					</div>
 				</div>
 			</section>
@@ -469,106 +428,131 @@ const Homepage = () => {
 			{/* Contact Section */}
 			<section id="contact" className="contact">
 				<div className="container">
-					<div className="contact-content">
+					<div className="contact-grid">
 						<div className="contact-info">
 							<div className="section-badge">Kontakt</div>
-							<h2 className="section-title">Posetite Nas ili Pozovite</h2>
+							<h2 className="section-title">Zakažite Svoj Termin</h2>
 							<p className="contact-description">
-								Spremni smo da odgovorimo na sva vaša pitanja i zakazšemo termin
-								za servisiranje vašeg vozila.
+								Kontaktirajte nas i zakažite termin za servisiranje vašeg
+								vozila. Radimo sa terminima kako biste izbegali čekanje.
 							</p>
 
-							<div className="contact-items">
-								<div className="contact-item">
-									<div className="contact-icon">📍</div>
-									<div className="contact-details">
-										<h4>Adresa</h4>
-										<p>
-											Krajišnicka BB
-											<br />
-											78000 Banja Luka
-										</p>
+							<div className="contact-methods">
+								<div className="contact-method">
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faPhone} />
+									</div>
+									<div className="method-info">
+										<h4>Pozovite Nas</h4>
+										<p>051/234-567</p>
+										<span>Pon-Pet 07:00-19:00</span>
 									</div>
 								</div>
 
-								<div className="contact-item">
-									<div className="contact-icon">📞</div>
-									<div className="contact-details">
-										<h4>Telefon</h4>
-										<p>
-											051/234-567
-											<br />
-											065/123-4567
-										</p>
+								<div className="contact-method">
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faMapMarkerAlt} />
+									</div>
+									<div className="method-info">
+										<h4>Posetite Nas</h4>
+										<p>Krajišnika 15, Banja Luka</p>
+										<span>Kod Bosch centra</span>
 									</div>
 								</div>
 
-								<div className="contact-item">
-									<div className="contact-icon">⏰</div>
-									<div className="contact-details">
-										<h4>Radno Vreme</h4>
-										<p>
-											Pon-Pet: 07:00-19:00
-											<br />
-											Subota: 08:00-14:00
-										</p>
+								<div className="contact-method">
+									<div className="method-icon">
+										<FontAwesomeIcon icon={faHeadset} />
+									</div>
+									<div className="method-info">
+										<h4>24/7 Pomoć</h4>
+										<p>065/123-456</p>
+										<span>Hitna pomoć na putu</span>
 									</div>
 								</div>
+							</div>
 
-								<div className="contact-item">
-									<div className="contact-icon">📧</div>
-									<div className="contact-details">
-										<h4>Email</h4>
-										<p>
-											info@autoservistrepublika.rs
-											<br />
-											servis@autoservistrepublika.rs
-										</p>
+							<div className="working-hours">
+								<h4>Radno Vreme</h4>
+								<div className="hours-list">
+									<div className="hours-item">
+										<span>Ponedeljak - Petak</span>
+										<span>07:00 - 19:00</span>
+									</div>
+									<div className="hours-item">
+										<span>Subota</span>
+										<span>08:00 - 16:00</span>
+									</div>
+									<div className="hours-item">
+										<span>Nedelja</span>
+										<span>Zatvoreno</span>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div className="contact-form">
-							<form className="form">
-								<h3>Pošaljite Upit</h3>
+						<div className="contact-form-container">
+							<div className="form-header">
+								<h3>Zakazivanje Termina</h3>
+								<p>Popunite formu i kontaktiraćemo vas u najkraćem roku</p>
+							</div>
+
+							<form className="appointment-form">
 								<div className="form-row">
 									<div className="form-group">
-										<input type="text" placeholder="Vaše ime" required />
+										<label>Ime i Prezime</label>
+										<input type="text" placeholder="Vaše ime..." required />
 									</div>
 									<div className="form-group">
-										<input type="tel" placeholder="Telefon" required />
+										<label>Telefon</label>
+										<input type="tel" placeholder="Broj telefona..." required />
+									</div>
+								</div>
+
+								<div className="form-row">
+									<div className="form-group">
+										<label>Email</label>
+										<input
+											type="email"
+											placeholder="email@example.com"
+											required
+										/>
+									</div>
+									<div className="form-group">
+										<label>Marka Vozila</label>
+										<input
+											type="text"
+											placeholder="npr. Volkswagen Golf"
+											required
+										/>
 									</div>
 								</div>
 
 								<div className="form-group">
-									<input type="email" placeholder="Email adresa" required />
-								</div>
-
-								<div className="form-group">
+									<label>Tip Usluge</label>
 									<select required>
-										<option value="">Izaberite uslugu</option>
-										<option value="mehanic">Mehanički popravci</option>
-										<option value="motor">Servis motora</option>
-										<option value="kocnice">Kočnice i suspenzija</option>
-										<option value="elektro">Električni sistem</option>
-										<option value="gume">Gume i felne</option>
-										<option value="klima">Klima uređaj</option>
-										<option value="dijagnostika">Dijagnostika</option>
-										<option value="lakiranje">Lakiranje</option>
+										<option value="">Izaberite uslugu...</option>
+										<option value="dijagnostika">Bosch Dijagnostika</option>
+										<option value="servis">Redovno Servisiranje</option>
+										<option value="kocnice">Servis Kočnica</option>
+										<option value="elektrika">Električni Sistemi</option>
+										<option value="klima">Klimatizacija</option>
+										<option value="ostalo">Ostalo</option>
 									</select>
 								</div>
 
 								<div className="form-group">
+									<label>Opis Problema</label>
 									<textarea
-										placeholder="Opišite problem ili upit..."
 										rows="4"
+										placeholder="Opišite problem ili dodajte napomenu..."
 										required
 									></textarea>
 								</div>
 
-								<button type="submit" className="btn-primary full-width">
-									Pošaljite Upit
+								<button type="submit" className="submit-btn">
+									<FontAwesomeIcon icon={faCalendarAlt} />
+									Pošaljite Zahtev
 								</button>
 							</form>
 						</div>
@@ -580,80 +564,80 @@ const Homepage = () => {
 			<footer className="footer">
 				<div className="container">
 					<div className="footer-content">
-						<div className="footer-section">
-							<div className="footer-logo">
-								<div className="logo-icon">🔧</div>
-								<div className="logo-text">
-									<span className="logo-main">AutoServis</span>
-									<span className="logo-sub">Republika</span>
-								</div>
+						<div className="footer-main">
+							<div className="bosch-logo">
+								<span className="bosch-text">BOSCH</span>
+								<span className="car-service">Car Service</span>
 							</div>
 							<p className="footer-description">
-								Pouzdan partner za sve auto potrebe u Banjoj Luci i šire.
-								Ponosno služimo našu zajednicu već preko 15 godina.
+								Ovlašćeni Bosch Car Service centar u Banjoj Luci. Kvalitet,
+								pouzdanost i profesionalnost u servisu automobila.
 							</p>
-							<div className="social-links">
-								<a href="#" className="social-link">
-									📘
-								</a>
-								<a href="#" className="social-link">
-									📷
-								</a>
-								<a href="#" className="social-link">
-									📱
-								</a>
+							<div className="footer-certifications">
+								<div className="cert-badge">
+									<FontAwesomeIcon icon={faAward} />
+									<span>Bosch Partner</span>
+								</div>
+								<div className="cert-badge">
+									<FontAwesomeIcon icon={faShieldAlt} />
+									<span>ISO Sertifikat</span>
+								</div>
 							</div>
 						</div>
 
-						<div className="footer-section">
-							<h4>Brze Veze</h4>
-							<ul className="footer-links">
-								<li>
-									<a href="#home">Početna</a>
-								</li>
-								<li>
-									<a href="#services">Usluge</a>
-								</li>
-								<li>
-									<a href="#about">O Nama</a>
-								</li>
-								<li>
-									<a href="#team">Naš Tim</a>
-								</li>
-								<li>
-									<a href="#contact">Kontakt</a>
-								</li>
-							</ul>
-						</div>
+						<div className="footer-links">
+							<div className="footer-column">
+								<h4>Usluge</h4>
+								<ul>
+									<li>
+										<a href="#services">Dijagnostika</a>
+									</li>
+									<li>
+										<a href="#services">Servis Motora</a>
+									</li>
+									<li>
+										<a href="#services">Kočni Sistem</a>
+									</li>
+									<li>
+										<a href="#services">Elektrika</a>
+									</li>
+								</ul>
+							</div>
 
-						<div className="footer-section">
-							<h4>Usluge</h4>
-							<ul className="footer-links">
-								<li>
-									<a href="#">Mehanički Popravci</a>
-								</li>
-								<li>
-									<a href="#">Servis Motora</a>
-								</li>
-								<li>
-									<a href="#">Kočnice i Suspenzija</a>
-								</li>
-								<li>
-									<a href="#">Dijagnostika</a>
-								</li>
-								<li>
-									<a href="#">Lakiranje</a>
-								</li>
-							</ul>
-						</div>
+							<div className="footer-column">
+								<h4>Informacije</h4>
+								<ul>
+									<li>
+										<a href="#about">O Nama</a>
+									</li>
+									<li>
+										<a href="#testimonials">Utisci</a>
+									</li>
+									<li>
+										<a href="#contact">Kontakt</a>
+									</li>
+									<li>
+										<a href="#">Cenovnik</a>
+									</li>
+								</ul>
+							</div>
 
-						<div className="footer-section">
-							<h4>Kontakt Info</h4>
-							<div className="contact-info-footer">
-								<p>📍 Krajišnicka BB, Banja Luka</p>
-								<p>📞 051/234-567</p>
-								<p>📧 info@autoservistrepublika.rs</p>
-								<p>⏰ Pon-Pet: 07:00-19:00</p>
+							<div className="footer-column">
+								<h4>Kontakt</h4>
+								<div className="footer-contact">
+									<p>
+										<FontAwesomeIcon icon={faMapMarkerAlt} />
+										Krajišnika 15, Banja Luka
+									</p>
+									<p>
+										<FontAwesomeIcon icon={faPhone} />
+										051/234-567
+									</p>
+									<p>
+										<FontAwesomeIcon icon={faEnvelope} />
+										info@boschservice-bl.rs
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -661,11 +645,13 @@ const Homepage = () => {
 					<div className="footer-bottom">
 						<div className="footer-divider"></div>
 						<div className="footer-bottom-content">
-							<p>&copy; 2024 AutoServis Republika. Sva prava zadržana.</p>
-							<div className="footer-bottom-links">
+							<p>
+								&copy; 2024 Bosch Car Service Banja Luka. Sva prava zadržana.
+							</p>
+							<div className="footer-links-small">
 								<a href="#">Privatnost</a>
-								<a href="#">Uslovi korišćenja</a>
-								<a href="#">Mapa sajta</a>
+								<a href="#">Uslovi</a>
+								<a href="#">Cookies</a>
 							</div>
 						</div>
 					</div>
