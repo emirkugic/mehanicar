@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faWrench,
@@ -185,14 +186,6 @@ const Homepage = () => {
 		},
 	];
 
-	const scrollToSection = (sectionId) => {
-		const element = document.getElementById(sectionId);
-		if (element) {
-			element.scrollIntoView({ behavior: "smooth" });
-		}
-		setIsMenuOpen(false);
-	};
-
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 		setIsFormSubmitted(true);
@@ -202,6 +195,10 @@ const Homepage = () => {
 			setIsFormSubmitted(false);
 			e.target.reset();
 		}, 3000);
+	};
+
+	const closeMenu = () => {
+		setIsMenuOpen(false);
 	};
 
 	return (
@@ -217,21 +214,21 @@ const Homepage = () => {
 					</div>
 
 					<nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
-						<a href="#home" onClick={() => scrollToSection("home")}>
+						<Link to="/" onClick={closeMenu}>
 							Početna
-						</a>
-						<a href="#services" onClick={() => scrollToSection("services")}>
+						</Link>
+						<Link to="/usluge" onClick={closeMenu}>
 							Usluge
-						</a>
-						<a href="#about" onClick={() => scrollToSection("about")}>
+						</Link>
+						<Link to="/o-nama" onClick={closeMenu}>
 							O Nama
-						</a>
-						<a href="#why-choose" onClick={() => scrollToSection("why-choose")}>
+						</Link>
+						<Link to="/zasto-mi" onClick={closeMenu}>
 							Zašto Mi
-						</a>
-						<a href="#contact" onClick={() => scrollToSection("contact")}>
+						</Link>
+						<Link to="/kontakt" onClick={closeMenu}>
 							Kontakt
-						</a>
+						</Link>
 					</nav>
 
 					<div className="header-actions">
@@ -295,20 +292,14 @@ const Homepage = () => {
 						</div>
 
 						<div className="hero-buttons">
-							<button
-								className="btn-primary"
-								onClick={() => scrollToSection("services")}
-							>
+							<Link to="/usluge" className="btn-primary">
 								<FontAwesomeIcon icon={faWrench} />
 								Naše Usluge
-							</button>
-							<button
-								className="btn-outline"
-								onClick={() => scrollToSection("contact")}
-							>
+							</Link>
+							<Link to="/kontakt" className="btn-outline">
 								<FontAwesomeIcon icon={faCalendarAlt} />
 								Zakažite Termin
-							</button>
+							</Link>
 						</div>
 					</div>
 				</div>
@@ -610,16 +601,16 @@ const Homepage = () => {
 								<h4>Usluge</h4>
 								<ul>
 									<li>
-										<a href="#services">Dijagnostika</a>
+										<Link to="/usluge">Dijagnostika</Link>
 									</li>
 									<li>
-										<a href="#services">Redovni Servis</a>
+										<Link to="/usluge">Redovni Servis</Link>
 									</li>
 									<li>
-										<a href="#services">Kočni Sistem</a>
+										<Link to="/usluge">Kočni Sistem</Link>
 									</li>
 									<li>
-										<a href="#services">Elektrika</a>
+										<Link to="/usluge">Elektrika</Link>
 									</li>
 								</ul>
 							</div>
@@ -628,13 +619,13 @@ const Homepage = () => {
 								<h4>Informacije</h4>
 								<ul>
 									<li>
-										<a href="#about">O Nama</a>
+										<Link to="/o-nama">O Nama</Link>
 									</li>
 									<li>
-										<a href="#why-choose">Zašto Mi</a>
+										<Link to="/zasto-mi">Zašto Mi</Link>
 									</li>
 									<li>
-										<a href="#contact">Kontakt</a>
+										<Link to="/kontakt">Kontakt</Link>
 									</li>
 									<li>
 										<a href="#">Cenovnik</a>
