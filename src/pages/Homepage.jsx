@@ -259,11 +259,6 @@ const Homepage = () => {
 
 				<div className="container">
 					<div className="hero-content">
-						<div className="hero-badge">
-							<FontAwesomeIcon icon={faAward} className="badge-icon" />
-							<span>Ovlašćeni Bosch Partner</span>
-						</div>
-
 						<h1 className="hero-title">
 							<span className="highlight-red">Bosch</span> Kvalitet
 							<br />
