@@ -33,6 +33,7 @@
 	font-size: clamp(2.5rem, 5vw, 4rem);
 	font-weight: 800;
 	margin-bottom: 1rem;
+	color: rgb(227, 216, 216);
 }
 
 .usluge-hero p {
@@ -40,6 +41,7 @@
 	opacity: 0.95;
 	max-width: 600px;
 	margin: 0 auto;
+	color: rgb(227, 216, 216);
 }
 
 .usluge-main {

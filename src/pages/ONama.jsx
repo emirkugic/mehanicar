@@ -63,15 +63,14 @@ const ONama = () => {
 			experience: "20+ godina iskustva",
 			certifications: ["Bosch Master", "ASE Certified"],
 			image:
-				"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+				"https://www.vecernji.hr/media/img/20/62/b8f10df63c6b1b5ee878.jpeg",
 		},
 		{
 			name: "Milan Jovanović",
 			position: "Šef servisa",
 			experience: "15+ godina iskustva",
 			certifications: ["Bosch Expert", "Dijagnostičar"],
-			image:
-				"https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?w=400&h=400&fit=crop",
+			image: "https://static.klix.ba/jobs/picture_1748348624.jpg",
 		},
 		{
 			name: "Stefan Petrović",
@@ -79,7 +78,7 @@ const ONama = () => {
 			experience: "12+ godina iskustva",
 			certifications: ["Bosch Specialist", "Elektro sistemi"],
 			image:
-				"https://images.unsplash.com/photo-1558222218-b7b54eede3f3?w=400&h=400&fit=crop",
+				"https://serbiantimes.info/wp-content/uploads/2021/04/Mehanicar-kamion.jpg",
 		},
 		{
 			name: "Nikola Stojanović",
@@ -87,7 +86,23 @@ const ONama = () => {
 			experience: "10+ godina iskustva",
 			certifications: ["Bosch Certified", "Motor specialist"],
 			image:
-				"https://images.unsplash.com/photo-1582896911227-c966f6e7fb93?w=400&h=400&fit=crop",
+				"https://gpmaljevac.com/wp-content/uploads/2025/03/2235267-majstor.jpeg",
+		},
+		{
+			name: "Miloš Ilić",
+			position: "Mehaničar",
+			experience: "10+ godina iskustva",
+			certifications: ["Bosch Certified", "Motor specialist"],
+			image:
+				"https://media.istockphoto.com/id/1167389729/photo/portrait-of-a-senior-mechanic-standing-with-arms-crossed-in-a-repair-shop.jpg?s=612x612&w=0&k=20&c=M4fzQSlUk9-2UO--PX_jt5HiUdjXm-HN87l0p2gExNA=",
+		},
+		{
+			name: "Dragan Kovačević",
+			position: "Mehaničar",
+			experience: "10+ godina iskustva",
+			certifications: ["Bosch Certified", "Motor specialist"],
+			image:
+				"https://us.images.westend61.de/0001070991pw/portrait-of-a-senior-caucasian-male-owner-of-an-antique-car-repair-shop-MINF09224.jpg",
 		},
 	];
 
@@ -180,20 +195,6 @@ const ONama = () => {
 				</div>
 			</section>
 
-			{/* Stats Section */}
-			<section className="stats-section">
-				<div className="container">
-					<div className="stats-grid">
-						{stats.map((stat, index) => (
-							<div key={index} className="stat-card">
-								<div className="stat-number">{stat.number}</div>
-								<div className="stat-label">{stat.label}</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
 			{/* Values Section */}
 			<section className="values-section">
 				<div className="container">
@@ -254,21 +255,11 @@ const ONama = () => {
 							<div key={index} className="team-card">
 								<div className="member-image">
 									<img src={member.image} alt={member.name} />
-									<div className="member-overlay">
-										<div className="certifications">
-											{member.certifications.map((cert, idx) => (
-												<span key={idx} className="cert-badge">
-													<FontAwesomeIcon icon={faCertificate} />
-													{cert}
-												</span>
-											))}
-										</div>
-									</div>
+									<div className="member-overlay"></div>
 								</div>
 								<div className="member-info">
 									<h3>{member.name}</h3>
 									<p className="position">{member.position}</p>
-									<p className="experience">{member.experience}</p>
 								</div>
 							</div>
 						))}

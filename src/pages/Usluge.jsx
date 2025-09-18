@@ -357,19 +357,6 @@ const Usluge = () => {
 										))}
 									</ul>
 								</div>
-								<div className="service-footer">
-									<div className="service-meta">
-										<div className="meta-item">
-											<FontAwesomeIcon icon={faClock} />
-											<span>{service.duration}</span>
-										</div>
-										<div className="price">{service.price}</div>
-									</div>
-									<button className="book-btn">
-										Zakažite termin
-										<FontAwesomeIcon icon={faArrowRight} />
-									</button>
-								</div>
 							</div>
 						))}
 					</div>

@@ -212,70 +212,6 @@ const ZastoMi = () => {
 				</div>
 			</section>
 
-			{/* Achievements Section */}
-			<section className="achievements-section">
-				<div className="container">
-					<div className="achievements-grid">
-						{achievements.map((achievement, index) => (
-							<div key={index} className="achievement-card">
-								<div className="achievement-icon">
-									<FontAwesomeIcon icon={achievement.icon} />
-								</div>
-								<div className="achievement-number">{achievement.number}</div>
-								<h3>{achievement.title}</h3>
-								<p>{achievement.description}</p>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* Comparison Section */}
-			<section className="comparison-section">
-				<div className="container">
-					<div className="section-header">
-						<div className="section-badge">Poređenje</div>
-						<h2>Mi vs Konkurencija</h2>
-					</div>
-
-					<div className="comparison-table">
-						<div className="table-header">
-							<div className="feature-col">Karakteristika</div>
-							<div className="us-col">
-								<FontAwesomeIcon icon={faGem} />
-								Bosch Car Service
-							</div>
-							<div className="others-col">Drugi Servisi</div>
-						</div>
-						{comparisons.map((item, index) => (
-							<div key={index} className="table-row">
-								<div className="feature-col">{item.feature}</div>
-								<div className="us-col">
-									{item.us ? (
-										<FontAwesomeIcon
-											icon={faCheckCircle}
-											className="check-icon"
-										/>
-									) : (
-										<span className="x-icon">×</span>
-									)}
-								</div>
-								<div className="others-col">
-									{item.others ? (
-										<FontAwesomeIcon
-											icon={faCheckCircle}
-											className="check-icon partial"
-										/>
-									) : (
-										<span className="x-icon">×</span>
-									)}
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
 			{/* Testimonials Section */}
 			<section className="testimonials-section">
 				<div className="container">
@@ -297,7 +233,6 @@ const ZastoMi = () => {
 								</div>
 								<p className="testimonial-text">"{testimonial.text}"</p>
 								<div className="testimonial-author">
-									<img src={testimonial.image} alt={testimonial.name} />
 									<div>
 										<h4>{testimonial.name}</h4>
 										<span>{testimonial.car}</span>
