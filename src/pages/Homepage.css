@@ -315,6 +315,7 @@ p {
 	font-weight: 800;
 	line-height: 1.1;
 	margin-bottom: 1.5rem;
+	text-shadow: 0 2px 32px rgba(255, 255, 255, 0.182);
 }
 
 .highlight-red {
@@ -330,6 +331,7 @@ p {
 	line-height: 1.6;
 	margin-bottom: 2.5rem;
 	opacity: 0.95;
+	text-shadow: 0 2px 8px rgba(79, 79, 79, 0.7);
 }
 
 .hero-features {

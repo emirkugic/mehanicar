@@ -543,7 +543,7 @@ const Homepage = () => {
 											<label>Marka i Model Vozila</label>
 											<input
 												type="text"
-												placeholder="npr. Volkswagen Golf 2015"
+												placeholder="npr. Volkswagen Golf 7 R 2015"
 												required
 											/>
 										</div>
